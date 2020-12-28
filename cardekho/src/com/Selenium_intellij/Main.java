@@ -4,7 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class Main {
 
@@ -48,9 +51,20 @@ public class Main {
             String star3=driver.findElement(By.xpath("//div[@data-track-section='Maruti Swift']//div[@class='startRating']//span[@data-index='3']")).getAttribute("class");
             String star4=driver.findElement(By.xpath("//div[@data-track-section='Maruti Swift']//div[@class='startRating']//span[@data-index='4']")).getAttribute("class");
             String star5=driver.findElement(By.xpath("//div[@data-track-section='Maruti Swift']//div[@class='startRating']//span[@data-index='5']")).getAttribute("class");
-
-
-
+            List<WebElement> elm=driver.findElements(By.xpath("//table[@data-track-section='Petrol Version']//td[@class='pricevalue']"));
+            String prizevalue1= elm.get(0).getText();
+            String prizevalueone=driver.findElement(By.xpath("(//table[@data-track-section='Petrol Version']//td[@class='pricevalue'])[1]")).getText();
+            if(prizevalueone.equals(prizevalue1))
+                System.out.println("Working");
+            System.out.println(driver.findElements(By.xpath("//table[@data-track-section='Petrol Version']//td[@class='pricevalue']")).size());
+            Actions act=new Actions(driver);
+            WebElement usecars=driver.findElement(By.xpath("//ul[@data-track-section='MainMenu']//*[contains(text(),'USED CAR')]"));
+            act.moveToElement(usecars).build().perform();
+            Thread.sleep(3000);
+            WebElement carsinCity=driver.findElement(By.xpath("//ul[@data-track-section='MainMenu']//*[contains(text(),'Cars In Your City')]"));
+            act.moveToElement(carsinCity).build().perform();
+            Thread.sleep(2000);
+            carsinCity.click();
         }else
         {
             throw new AssertionError("URL doesn't match");
