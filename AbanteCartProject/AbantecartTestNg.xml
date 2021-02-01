@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Suite name="Abante Cart Test Suite">
+
+<test name="Loginpage Test Case">
+<classes>
+<class name="TestCases.Login_Page"></class>
+</classes>
+</test>
+<test name="Search Functionality">
+<classes>
+<class name="TestCases.SearchFunction">
+</class>
+</classes>
+</test>
+
+
+
+
+
+
+
+
+
+
+</Suite>
